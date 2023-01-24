@@ -59,4 +59,29 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/users/{id}")
+	public ResponseEntity<User> updateTutorial(@PathVariable("id") long id, @RequestBody User user) {
+		User _user = userService.findById(id);
+
+		if (_user != null) {
+			_user.setName(user.getName());
+			_user.setEmail(user.getEmail());
+			_user.setPassword(user.getPassword());
+            _user.setRole(user.getRole());
+			return new ResponseEntity<>(userService.save(_user), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@DeleteMapping("/users/{id}")
+	public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
+		try {
+			userService.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
