@@ -2,6 +2,16 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Class User
+ *
+ * @property long id
+ * @property String name
+ * @property String email
+ * @property String password
+ * @property Role role
+ * @method toString()
+ */
 @Entity
 @Table(name = "rekruter")
 public class User {

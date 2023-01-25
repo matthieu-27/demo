@@ -50,7 +50,4 @@ public class UserService {
         users.removeIf(user -> id == user.getId());
     }
 
-    public void deleteAll() {
-        users.removeAll(users);
-    }
 }
